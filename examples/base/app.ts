@@ -87,26 +87,49 @@ axios({
   }
 })
 
+// axios({
+//   method: 'post',
+//   url: '/base/post',
+//   headers: {
+//     'content-type': 'application/json',
+//     'Accept': 'application/json, text/plain, */*'
+//   },
+//   data: {
+//     a: 1,
+//     b: 2
+//   }
+// })
+
+
+// // 这里浏览器自动添加了header中的content-type
+// const paramsString = 'q=URLUtils.searchParams&topic=api'
+// const searchParams = new URLSearchParams(paramsString)
+
+// axios({
+//   method: 'post',
+//   url: '/base/post',
+//   data: searchParams
+// })
+
 axios({
   method: 'post',
   url: '/base/post',
-  headers: {
-    'content-type': 'application/json',
-    'Accept': 'application/json, text/plain, */*'
-  },
   data: {
     a: 1,
     b: 2
   }
+}).then((res) => {
+  console.log(res)
 })
-
-
-// 这里浏览器自动添加了header中的content-type
-const paramsString = 'q=URLUtils.searchParams&topic=api'
-const searchParams = new URLSearchParams(paramsString)
 
 axios({
   method: 'post',
   url: '/base/post',
-  data: searchParams
+  responseType: 'json',
+  data: {
+    a: 3,
+    b: 4
+  }
+}).then((res) => {
+  console.log(res)
 })
