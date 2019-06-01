@@ -133,3 +133,8 @@ axios({
 }).then((res) => {
   console.log(res)
 })
+
+axios.post('/base/post', {
+  a: 4,
+  b: 5
+})
