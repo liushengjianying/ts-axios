@@ -1,4 +1,9 @@
-import {isDate, isPlainObject } from './util'
+import { isDate, isPlainObject } from './util'
+
+interface URLOrigin {
+  protocol: string
+  host: string
+}
 
 function encode(val: string): string {
   return encodeURIComponent(val)
@@ -35,7 +40,7 @@ export function buildURL(url: string, params?: any) {
       if (isDate(val)) {
         val = val.toISOString();
       } else if (isPlainObject(val)) {
-         val = JSON.stringify(val)
+        val = JSON.stringify(val)
       }
       parts.push(`${encode(key)}=${encode(val)}`)
     })
@@ -51,4 +56,24 @@ export function buildURL(url: string, params?: any) {
     url += (url.indexOf('?') === -1 ? '?' : '&') + serializedParams;
   }
   return url
+}
+
+// 判断是否同源
+export function isURLSameOrigin(requestURL: string): boolean {
+  const parsedOrigin = resolveURL(requestURL);
+  return (parsedOrigin.protocol === currentOrigin.protocol &&
+    parsedOrigin.host === currentOrigin.host)
+}
+
+const urlParsingNode = document.createElement('a');
+const currentOrigin = resolveURL(window.location.href);
+
+function resolveURL(url: string): URLOrigin {
+  urlParsingNode.setAttribute('href', url);
+  // 协议和域名
+  const { protocol, host } = urlParsingNode;
+  return {
+    protocol,
+    host
+  }
 }
