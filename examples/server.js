@@ -213,11 +213,11 @@ function registerMoreRouter () {
     res.end()
   })
 
-  // router.get('/more/A', function(req, res) {
-  //   res.end('A')
-  // })
+  router.get('/more/A', function(req, res) {
+    res.end('A')
+  })
 
-  // router.get('/more/B', function(req, res) {
-  //   res.end('B')
-  // })
+  router.get('/more/B', function(req, res) {
+    res.end('B')
+  })
 }
