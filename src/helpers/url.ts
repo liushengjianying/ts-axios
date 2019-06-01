@@ -65,6 +65,17 @@ export function buildURL(url: string, params?: any,
   return url
 }
 
+// 判断是否是决定地址,baseURL需求
+export function isAbsoluteURL(url: string): boolean {
+  return /(^[a-z][a-z\d\+\-\.]*:)?\/\//i.test(url);
+}
+
+export function combineURL(baseURL: string, relativeURL?: string): string {
+  // 删除baseurl和传入的url，后面和前面的url，这样写的不规范这里也能做处理了
+  return relativeURL ? baseURL.replace(/\/+$/, '') + '/' + 
+  relativeURL.replace(/^\/+/, '') : baseURL
+}
+
 // 判断是否同源
 export function isURLSameOrigin(requestURL: string): boolean {
   const parsedOrigin = resolveURL(requestURL);
