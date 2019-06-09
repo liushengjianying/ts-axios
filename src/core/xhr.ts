@@ -1,5 +1,5 @@
 import { AxiosRequestConfig, AxiosPromise, AxiosResponse } from '../types'
-import { parseHeaders, processHeaders } from '../helpers/header';
+import { parseHeaders } from '../helpers/header';
 import { createError } from '../helpers/error';
 import { isURLSameOrigin } from '../helpers/url';
 import cookie from '../helpers/cookie';
@@ -10,8 +10,8 @@ export default function xhr(config: AxiosRequestConfig): AxiosPromise {
     const {
       data = null,
       url,
-      method = 'get',
-      headers,
+      method,
+      headers = {},
       responseType,
       timeout,
       cancelToken,
@@ -26,7 +26,7 @@ export default function xhr(config: AxiosRequestConfig): AxiosPromise {
 
     const request = new XMLHttpRequest()
 
-    request.open(method.toUpperCase(), url!, true)
+    request.open(method!.toUpperCase(), url!, true)
 
     configureRequest();
 
@@ -85,7 +85,7 @@ export default function xhr(config: AxiosRequestConfig): AxiosPromise {
 
       request.onerror = function handleError() {
         // 这里拿不到response，所以不传
-        reject(createError('Netword Error', config, null, request))
+        reject(createError('Network Error', config, null, request))
       }
 
       request.ontimeout = function handleTimeout() {

@@ -4,9 +4,10 @@ export class AxiosError extends Error {
     isAxiosError: boolean
     config: AxiosRequestConfig
     code?: string | null
-    requset?: any
+    request?: any
     response?: AxiosResponse
 
+    /* istanbul ignore next */
     constructor(
         message: string,
         config: AxiosRequestConfig,
@@ -18,7 +19,7 @@ export class AxiosError extends Error {
 
         this.config = config
         this.code = code
-        this.requset = request
+        this.request = request
         this.response = response
         this.isAxiosError = true
 

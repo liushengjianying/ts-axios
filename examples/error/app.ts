@@ -39,5 +39,5 @@ axios({
     console.log(e.message)
     console.log(e.isAxiosError)
     console.log(e.response)
-    console.log(e.requset)
+    console.log(e.request)
 })

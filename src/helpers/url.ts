@@ -65,9 +65,9 @@ export function buildURL(url: string, params?: any,
   return url
 }
 
-// 判断是否是决定地址,baseURL需求
+// 判断是否是绝对地址,baseURL需求
 export function isAbsoluteURL(url: string): boolean {
-  return /(^[a-z][a-z\d\+\-\.]*:)?\/\//i.test(url);
+  return /^([a-z][a-z\d\+\-\.]*:)?\/\//i.test(url);
 }
 
 export function combineURL(baseURL: string, relativeURL?: string): string {

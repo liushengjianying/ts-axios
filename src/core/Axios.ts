@@ -44,6 +44,7 @@ export default class Axios {
         }
 
         config = mergeConfig(this.defaults, config);
+        config.method = config.method.toLowerCase();
 
         // 链的初始值, 链式调用初始就是发送请求
         const chain: PromiseChain<any>[] = [{

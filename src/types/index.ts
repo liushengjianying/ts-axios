@@ -42,7 +42,7 @@ export interface AxiosError extends Error {
   isAxiosError: boolean
   config: AxiosRequestConfig
   code?: string | null
-  requset?: any
+  request?: any
   response: AxiosResponse
 }
 
@@ -111,7 +111,7 @@ export interface RejectedFn {
 }
 
 export interface AxiosTransformer {
-  (data: any, headers: any): any
+  (data: any, headers?: any): any
 }
 
 export interface CancelToken {
